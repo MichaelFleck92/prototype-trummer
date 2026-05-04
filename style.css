@@ -1,0 +1,311 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --paper:      #f2ede3;
+  --ink:        #1a1510;
+  --ink-mid:    #4a3f35;
+  --ink-faint:  #9a8a7a;
+  --border:     #8b7a6a;
+  --dot-size:   28px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background-color: var(--paper);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── RULES ───────────────────────────────── */
+.rule {
+  border: none;
+  border-top: 1px solid var(--ink);
+  margin: 0;
+}
+.rule--thick { border-top-width: 3px; }
+.rule--double {
+  border-top: 3px solid var(--ink);
+  margin-top: 3px;
+  padding-top: 3px;
+  border-bottom: 1px solid var(--ink);
+}
+
+/* ── HEADER ──────────────────────────────── */
+header {
+  padding: 1.4rem 2rem;
+  text-align: center;
+}
+
+.header-inner {
+  padding: 0.7rem 0;
+}
+
+.header-dates {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  margin-bottom: 0.45rem;
+}
+
+h1 {
+  font-size: clamp(1.7rem, 5vw, 3rem);
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+  line-height: 1.1;
+}
+
+.header-sub {
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-mid);
+  font-style: italic;
+}
+
+/* ── MAP ─────────────────────────────────── */
+main { flex: 1; }
+
+.map-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#map {
+  width: 100%;
+  height: 58vh;
+  min-height: 320px;
+
+}
+
+
+.leaflet-tile-pane {
+  filter: grayscale(0%) sepia(0%) contrast(1) brightness(1);
+}
+
+
+/* ── CUSTOM MARKERS ──────────────────────── */
+.custom-marker { background: transparent; border: none; }
+
+.marker-pin {
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.4);
+  transition: background 0.18s, color 0.18s;
+}
+
+.marker-pin.active,
+.marker-pin:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ── LEAFLET POPUP ───────────────────────── */
+.leaflet-popup-content-wrapper {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 12px rgba(0,0,0,0.35);
+  padding: 0;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  width: 280px !important;
+}
+
+.leaflet-popup-tip { background: var(--paper); }
+
+.popup-img {
+  width: 100%;
+  height: 148px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--border);
+  filter: grayscale(85%) sepia(18%);
+}
+
+.popup-body { padding: 10px 14px 13px; }
+
+.popup-header {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-bottom: 4px;
+}
+
+.popup-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.popup-name {
+  font-size: 0.92rem;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+}
+
+.popup-period {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+.popup-text {
+  font-size: 0.76rem;
+  line-height: 1.58;
+  color: var(--ink-mid);
+}
+
+.leaflet-popup-close-button {
+  color: var(--ink) !important;
+  font-size: 18px !important;
+  top: 4px !important;
+  right: 6px !important;
+}
+
+/* ── TIMELINE ────────────────────────────── */
+.timeline-section {
+  padding: 1.8rem 0 1.6rem;
+}
+
+.section-label {
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1.4rem;
+}
+
+.timeline-scroll {
+  overflow-x: auto;
+  padding: 0 2rem 0.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--paper);
+}
+
+.timeline-scroll::-webkit-scrollbar { height: 4px; }
+.timeline-scroll::-webkit-scrollbar-track { background: var(--paper); }
+.timeline-scroll::-webkit-scrollbar-thumb { background: var(--border); }
+
+.timeline-track {
+  display: flex;
+  align-items: flex-start;
+  min-width: max-content;
+  position: relative;
+  /* horizontal rule through the dot centers: year label is 22px, dot is 26px → center at 22+13=35px */
+}
+
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+  pointer-events: none;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 128px;
+  cursor: pointer;
+  padding: 0 6px;
+  position: relative;
+}
+
+.timeline-year {
+  height: 22px;
+  line-height: 22px;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  text-align: center;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.timeline-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+  color: var(--ink);
+  margin-bottom: 7px;
+  position: relative;
+  z-index: 1;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+
+.timeline-item:hover .timeline-dot,
+.timeline-item.active .timeline-dot {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.timeline-event {
+  font-size: 0.67rem;
+  text-align: center;
+  line-height: 1.42;
+  color: var(--ink-mid);
+}
+
+.timeline-item:hover .timeline-event,
+.timeline-item.active .timeline-event {
+  color: var(--ink);
+}
+
+/* ── FOOTER ──────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 0.9rem 2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
